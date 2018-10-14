@@ -8,19 +8,15 @@ node {
     }
 
     stage('Install dependencies') {
-      app.inside {
         sh 'npm install'
         sh 'npm run bowerInstall'
-      }
     }
 
     stage('Run unit test') {
         /* Ideally, we would run a test framework against our image.
          * For this example, we're using a Volkswagen-type approach ;-) */
 
-        app.inside {
-            sh 'npm test'
-        }
+        sh 'npm test'
     }
 
     stage('Build image') {
