@@ -7,11 +7,11 @@ node {
         checkout scm
     }
 
-    stage('Build image') {
-        /* This builds the actual image; synonymous to
-         * docker build on the command line */
-
-        app = docker.build("khizunov/hellonode")
+    stage('Install dependencies') {
+      steps {
+        sh 'npm install'
+        sh 'npm run bowerInstall'
+      }
     }
 
     stage('Test image') {
@@ -22,6 +22,14 @@ node {
             sh 'echo "Tests passed"'
         }
     }
+
+    stage('Build image') {
+        /* This builds the actual image; synonymous to
+         * docker build on the command line */
+
+        app = docker.build("khizunov/hellonode")
+    }
+
     try {
         stage('Push image') {
             /* Finally, we'll push the image with two tags:
