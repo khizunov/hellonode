@@ -14,12 +14,12 @@ node {
       }
     }
 
-    stage('Test image') {
+    stage('Run unit test') {
         /* Ideally, we would run a test framework against our image.
          * For this example, we're using a Volkswagen-type approach ;-) */
 
         app.inside {
-            sh 'echo "Tests passed"'
+            sh 'npm test'
         }
     }
 
