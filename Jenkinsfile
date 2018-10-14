@@ -8,7 +8,7 @@ node {
     }
 
     stage('Install dependencies') {
-      steps {
+      app.inside {
         sh 'npm install'
         sh 'npm run bowerInstall'
       }
