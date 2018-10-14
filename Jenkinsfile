@@ -9,7 +9,6 @@ node {
 
     stage('Install dependencies') {
         sh 'npm install'
-        sh 'npm run bowerInstall'
     }
 
     stage('Run unit test') {
